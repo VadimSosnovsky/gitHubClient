@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewControllerRepo: UIViewController {
+class RepoViewController: UIViewController {
 
     @IBOutlet private weak var tableView: UITableView!
     
@@ -24,7 +24,7 @@ class ViewControllerRepo: UIViewController {
     }
 }
 
-extension ViewControllerRepo: UITableViewDelegate, UITableViewDataSource {
+extension RepoViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as? TableViewCell {

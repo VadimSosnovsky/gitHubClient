@@ -6,21 +6,12 @@
 //
 
 import UIKit
-import Firebase
-import FirebaseAuth
 
-class ViewControllerFavRepo: UIViewController {
+class FavRepoViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-    }
-    @IBAction func buttonLogout(_ sender: Any) {
-        do {
-            try Auth.auth().signOut()
-        } catch {
-            print(error)
-        }
     }
 }

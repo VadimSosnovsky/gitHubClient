@@ -13,11 +13,5 @@ class TabBarViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "img"), style: .done, target: self, action: nil)
-
-        // Для Tab bar
-        self.tabBarController?.navigationItem.rightBarButtonItems = [rightBarButtonItem]
-        // Do any additional setup after loading the view.
     }
 }

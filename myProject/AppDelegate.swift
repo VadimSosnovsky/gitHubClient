@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func showModalAuth() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let newVC = storyboard.instantiateViewController(withIdentifier: "ViewControllerAuth") as! ViewControllerAuth
+        let newVC = storyboard.instantiateViewController(withIdentifier: "AuthViewController") as! AuthViewController
         self.window?.rootViewController?.present(newVC, animated: true, completion: nil)
     }
 }

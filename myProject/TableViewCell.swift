@@ -9,14 +9,13 @@ import UIKit
 
 class TableViewCell: UITableViewCell {
 
-    
-    @IBOutlet private weak var labelName: UILabel!
-    @IBOutlet private weak var labelDescription: UILabel!
-    @IBOutlet private weak var labelProgLang: UILabel!
-    @IBOutlet private weak var labelForks: UILabel!
-    @IBOutlet private weak var labelStars: UILabel!
-    @IBOutlet private weak var labelAuthorName: UILabel!
-    @IBOutlet private weak var imageViewAuthor: UIImageView!
+    @IBOutlet private weak var name: UILabel!
+    @IBOutlet private weak var desc: UILabel!
+    @IBOutlet private weak var language: UILabel!
+    @IBOutlet private weak var forks: UILabel!
+    @IBOutlet private weak var stars: UILabel!
+    @IBOutlet private weak var author: UILabel!
+    @IBOutlet private weak var profilePicture: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,12 +29,12 @@ class TableViewCell: UITableViewCell {
     }
     
     func configure() {
-        labelName.text = "Vadim"
-        labelDescription.text = "21"
-        labelProgLang.text = "Swift"
-        labelForks.text = "Forks"
-        labelStars.text = "Stars"
-        labelAuthorName.text = "Vadim Sosnovsky"
+        name.text = "Vadim"
+        desc.text = "21"
+        language.text = "Swift"
+        forks.text = "Forks"
+        stars.text = "Stars"
+        author.text = "Vadim Sosnovsky"
     }
     
 }

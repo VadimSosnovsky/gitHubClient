@@ -92,13 +92,13 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="imageViewAuthor" destination="oga-w1-Aim" id="9Ao-Qi-pkX"/>
-                <outlet property="labelAuthorName" destination="7iC-Cn-NM3" id="pdx-0I-cHI"/>
-                <outlet property="labelDescription" destination="FUS-ag-p5R" id="5yX-nP-RGw"/>
-                <outlet property="labelForks" destination="BYD-SJ-uWa" id="3gg-s3-kWJ"/>
-                <outlet property="labelName" destination="cFW-eQ-OQD" id="i3i-KL-54s"/>
-                <outlet property="labelProgLang" destination="Z4R-gm-lii" id="Ixc-zK-bAo"/>
-                <outlet property="labelStars" destination="6kf-Yz-3Hz" id="0LR-tb-Am9"/>
+                <outlet property="author" destination="7iC-Cn-NM3" id="7s1-w1-KIK"/>
+                <outlet property="desc" destination="FUS-ag-p5R" id="PO3-9J-Blw"/>
+                <outlet property="forks" destination="BYD-SJ-uWa" id="q6U-k3-HfK"/>
+                <outlet property="language" destination="Z4R-gm-lii" id="Ddy-x0-FGs"/>
+                <outlet property="name" destination="cFW-eQ-OQD" id="Rjp-LM-nfB"/>
+                <outlet property="profilePicture" destination="oga-w1-Aim" id="pz3-V9-fop"/>
+                <outlet property="stars" destination="6kf-Yz-3Hz" id="rOH-mJ-65L"/>
             </connections>
             <point key="canvasLocation" x="187.68115942028987" y="196.20535714285714"/>
         </tableViewCell>

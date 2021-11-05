@@ -9,7 +9,7 @@ import UIKit
 import Firebase
 import FirebaseAuth
 
-class ViewControllerAuth: UIViewController {
+class AuthViewController: UIViewController {
 
     @IBOutlet private weak var labelSignUp: UILabel!
     @IBOutlet private weak var labelName: UILabel!
@@ -53,7 +53,7 @@ class ViewControllerAuth: UIViewController {
     }
 }
 
-extension ViewControllerAuth: UITextFieldDelegate {
+extension AuthViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
@@ -92,7 +92,6 @@ extension ViewControllerAuth: UITextFieldDelegate {
                 showAlert()
             }
         }
-        
         return true
     }
 }

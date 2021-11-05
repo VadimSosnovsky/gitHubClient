@@ -9,13 +9,14 @@
 /* Begin PBXBuildFile section */
 		892EDB9B273463310015B6E4 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892EDB9A273463310015B6E4 /* TabBarViewController.swift */; };
 		8938574A2733EFA8007276EF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 893857492733EFA8007276EF /* GoogleService-Info.plist */; };
+		895B130A2735A468000D707A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 895B13092735A468000D707A /* Assets.xcassets */; };
 		895BD26827318FB80083566E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895BD26727318FB80083566E /* AppDelegate.swift */; };
 		895BD26F27318FB80083566E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 895BD26D27318FB80083566E /* Main.storyboard */; };
-		895BD27127318FB80083566E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 895BD27027318FB80083566E /* Assets.xcassets */; };
 		895BD27427318FB80083566E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 895BD27227318FB80083566E /* LaunchScreen.storyboard */; };
-		895BD27C273191770083566E /* ViewControllerAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895BD27B273191770083566E /* ViewControllerAuth.swift */; };
-		895BD27E273195770083566E /* ViewControllerRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895BD27D273195770083566E /* ViewControllerRepo.swift */; };
-		895BD280273195B30083566E /* ViewControllerFavRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895BD27F273195B30083566E /* ViewControllerFavRepo.swift */; };
+		895BD27C273191770083566E /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895BD27B273191770083566E /* AuthViewController.swift */; };
+		895BD27E273195770083566E /* RepoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895BD27D273195770083566E /* RepoViewController.swift */; };
+		895BD280273195B30083566E /* FavRepoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895BD27F273195B30083566E /* FavRepoViewController.swift */; };
+		898CF9782735ADC0001506C1 /* LogoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898CF9772735ADC0001506C1 /* LogoutViewController.swift */; };
 		89E623672732777A00791F12 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E623652732777A00791F12 /* TableViewCell.swift */; };
 		89E623682732777A00791F12 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89E623662732777A00791F12 /* TableViewCell.xib */; };
 		8A265788CC536B83483900DC /* Pods_myProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB8399F5FCD090A9DCE907E7 /* Pods_myProject.framework */; };
@@ -24,15 +25,16 @@
 /* Begin PBXFileReference section */
 		892EDB9A273463310015B6E4 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		893857492733EFA8007276EF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		895B13092735A468000D707A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		895BD26427318FB80083566E /* myProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		895BD26727318FB80083566E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		895BD26E27318FB80083566E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		895BD27027318FB80083566E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		895BD27327318FB80083566E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		895BD27527318FB80083566E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		895BD27B273191770083566E /* ViewControllerAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerAuth.swift; sourceTree = "<group>"; };
-		895BD27D273195770083566E /* ViewControllerRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerRepo.swift; sourceTree = "<group>"; };
-		895BD27F273195B30083566E /* ViewControllerFavRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerFavRepo.swift; sourceTree = "<group>"; };
+		895BD27B273191770083566E /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		895BD27D273195770083566E /* RepoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoViewController.swift; sourceTree = "<group>"; };
+		895BD27F273195B30083566E /* FavRepoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavRepoViewController.swift; sourceTree = "<group>"; };
+		898CF9772735ADC0001506C1 /* LogoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutViewController.swift; sourceTree = "<group>"; };
 		89E623652732777A00791F12 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		89E623662732777A00791F12 /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		96141A7BE42CC1DF56B70FF6 /* Pods-myProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myProject.debug.xcconfig"; path = "Target Support Files/Pods-myProject/Pods-myProject.debug.xcconfig"; sourceTree = "<group>"; };
@@ -92,14 +94,15 @@
 			children = (
 				895BD26727318FB80083566E /* AppDelegate.swift */,
 				895BD26D27318FB80083566E /* Main.storyboard */,
+				898CF9772735ADC0001506C1 /* LogoutViewController.swift */,
 				892EDB9A273463310015B6E4 /* TabBarViewController.swift */,
 				89E623652732777A00791F12 /* TableViewCell.swift */,
 				89E623662732777A00791F12 /* TableViewCell.xib */,
-				895BD27D273195770083566E /* ViewControllerRepo.swift */,
-				895BD27F273195B30083566E /* ViewControllerFavRepo.swift */,
-				895BD27B273191770083566E /* ViewControllerAuth.swift */,
-				895BD27027318FB80083566E /* Assets.xcassets */,
+				895BD27D273195770083566E /* RepoViewController.swift */,
+				895BD27F273195B30083566E /* FavRepoViewController.swift */,
+				895BD27B273191770083566E /* AuthViewController.swift */,
 				895BD27227318FB80083566E /* LaunchScreen.storyboard */,
+				895B13092735A468000D707A /* Assets.xcassets */,
 				893857492733EFA8007276EF /* GoogleService-Info.plist */,
 				895BD27527318FB80083566E /* Info.plist */,
 			);
@@ -169,8 +172,8 @@
 				895BD27427318FB80083566E /* LaunchScreen.storyboard in Resources */,
 				89E623682732777A00791F12 /* TableViewCell.xib in Resources */,
 				8938574A2733EFA8007276EF /* GoogleService-Info.plist in Resources */,
-				895BD27127318FB80083566E /* Assets.xcassets in Resources */,
 				895BD26F27318FB80083566E /* Main.storyboard in Resources */,
+				895B130A2735A468000D707A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,11 +227,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				89E623672732777A00791F12 /* TableViewCell.swift in Sources */,
-				895BD280273195B30083566E /* ViewControllerFavRepo.swift in Sources */,
-				895BD27C273191770083566E /* ViewControllerAuth.swift in Sources */,
+				895BD280273195B30083566E /* FavRepoViewController.swift in Sources */,
+				895BD27C273191770083566E /* AuthViewController.swift in Sources */,
 				895BD26827318FB80083566E /* AppDelegate.swift in Sources */,
+				898CF9782735ADC0001506C1 /* LogoutViewController.swift in Sources */,
 				892EDB9B273463310015B6E4 /* TabBarViewController.swift in Sources */,
-				895BD27E273195770083566E /* ViewControllerRepo.swift in Sources */,
+				895BD27E273195770083566E /* RepoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
