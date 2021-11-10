@@ -18,6 +18,8 @@
 		895BD27C273191770083566E /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895BD27B273191770083566E /* AuthViewController.swift */; };
 		895BD27E273195770083566E /* RepoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895BD27D273195770083566E /* RepoViewController.swift */; };
 		895BD280273195B30083566E /* FavRepoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895BD27F273195B30083566E /* FavRepoViewController.swift */; };
+		897FC186273C437E00716FB2 /* FavRepoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897FC184273C437E00716FB2 /* FavRepoTableViewCell.swift */; };
+		897FC187273C437E00716FB2 /* FavRepoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 897FC185273C437E00716FB2 /* FavRepoTableViewCell.xib */; };
 		898CF9782735ADC0001506C1 /* LogoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898CF9772735ADC0001506C1 /* LogoutViewController.swift */; };
 		89BF415D273707AC0075AC97 /* ReposModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BF415C273707AC0075AC97 /* ReposModel.swift */; };
 		89E623672732777A00791F12 /* RepoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E623652732777A00791F12 /* RepoTableViewCell.swift */; };
@@ -40,6 +42,8 @@
 		895BD27B273191770083566E /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		895BD27D273195770083566E /* RepoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoViewController.swift; sourceTree = "<group>"; };
 		895BD27F273195B30083566E /* FavRepoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavRepoViewController.swift; sourceTree = "<group>"; };
+		897FC184273C437E00716FB2 /* FavRepoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavRepoTableViewCell.swift; sourceTree = "<group>"; };
+		897FC185273C437E00716FB2 /* FavRepoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavRepoTableViewCell.xib; sourceTree = "<group>"; };
 		898CF9772735ADC0001506C1 /* LogoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutViewController.swift; sourceTree = "<group>"; };
 		89BF415C273707AC0075AC97 /* ReposModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReposModel.swift; sourceTree = "<group>"; };
 		89E623652732777A00791F12 /* RepoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoTableViewCell.swift; sourceTree = "<group>"; };
@@ -136,6 +140,15 @@
 			path = myProject;
 			sourceTree = "<group>";
 		};
+		897FC188273C438700716FB2 /* FavReposCell */ = {
+			isa = PBXGroup;
+			children = (
+				897FC184273C437E00716FB2 /* FavRepoTableViewCell.swift */,
+				897FC185273C437E00716FB2 /* FavRepoTableViewCell.xib */,
+			);
+			path = FavReposCell;
+			sourceTree = "<group>";
+		};
 		89C0D443273B02DB00123B56 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,6 +177,7 @@
 		89C0D446273B055300123B56 /* FavRepoScreen */ = {
 			isa = PBXGroup;
 			children = (
+				897FC188273C438700716FB2 /* FavReposCell */,
 				895BD27F273195B30083566E /* FavRepoViewController.swift */,
 			);
 			path = FavRepoScreen;
@@ -262,6 +276,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				895BD27427318FB80083566E /* LaunchScreen.storyboard in Resources */,
+				897FC187273C437E00716FB2 /* FavRepoTableViewCell.xib in Resources */,
 				89E623682732777A00791F12 /* RepoTableViewCell.xib in Resources */,
 				8938574A2733EFA8007276EF /* GoogleService-Info.plist in Resources */,
 				895BD26F27318FB80083566E /* Main.storyboard in Resources */,
@@ -325,6 +340,7 @@
 				895BD27C273191770083566E /* AuthViewController.swift in Sources */,
 				895BD26827318FB80083566E /* AppDelegate.swift in Sources */,
 				898CF9782735ADC0001506C1 /* LogoutViewController.swift in Sources */,
+				897FC186273C437E00716FB2 /* FavRepoTableViewCell.swift in Sources */,
 				892EDB9B273463310015B6E4 /* TabBarViewController.swift in Sources */,
 				895BD27E273195770083566E /* RepoViewController.swift in Sources */,
 				89BF415D273707AC0075AC97 /* ReposModel.swift in Sources */,

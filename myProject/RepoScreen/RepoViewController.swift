@@ -11,31 +11,38 @@ import Kingfisher
 class RepoViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet private weak var tableView: UITableView!
-    
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     
     private var selectedRepo: Repository?
-    
     private let viewModel = RepoViewModel()
-    
     private var repos = [Repository]()
+    
+    let myRefreshControl : UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
+        return refreshControl
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         activityIndicator.startAnimating()
-        
         viewModel.delegate = self
-        
         configureTableView()
-        
         viewModel.getReposData()
+        tableView.refreshControl = myRefreshControl
     }
+    
+    @objc private func refresh(sender: UIRefreshControl) {
+        tableView.reloadData()
+        sender.endRefreshing()
+    }
+    
     
     private func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UINib(nibName: "RepoTableViewCell", bundle: .main), forCellReuseIdentifier: "myCell")
+        tableView.register(UINib(nibName: "RepoTableViewCell", bundle: .main), forCellReuseIdentifier: "myCellRepo")
     }
     
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -46,15 +53,13 @@ class RepoViewController: UIViewController, UITableViewDelegate, UITableViewData
 //    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath) as? RepoTableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "myCellRepo", for: indexPath) as? RepoTableViewCell {
             cell.configure(name: repos[indexPath.row].name ?? "",
                            desc: repos[indexPath.row].description ?? "",
                            language: repos[indexPath.row].languages ?? "",
                            forks: repos[indexPath.row].forks ?? "",
                            stars: repos[indexPath.row].stargazers ?? "",
                            author: repos[indexPath.row].owner.login ?? "")
-            
-            
             
             KF.url(repos[indexPath.row].owner.avatar)
                 .set(to: cell.profilePicture)
