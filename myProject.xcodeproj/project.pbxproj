@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		892EDB9B273463310015B6E4 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892EDB9A273463310015B6E4 /* TabBarViewController.swift */; };
 		8938574A2733EFA8007276EF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 893857492733EFA8007276EF /* GoogleService-Info.plist */; };
+		893F91E6273AE83C000528FE /* RepoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893F91E5273AE83C000528FE /* RepoViewModel.swift */; };
+		893F91E9273AE98B000528FE /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893F91E8273AE98B000528FE /* NetworkService.swift */; };
 		895B130A2735A468000D707A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 895B13092735A468000D707A /* Assets.xcassets */; };
 		895BD26827318FB80083566E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895BD26727318FB80083566E /* AppDelegate.swift */; };
 		895BD26F27318FB80083566E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 895BD26D27318FB80083566E /* Main.storyboard */; };
@@ -17,14 +19,18 @@
 		895BD27E273195770083566E /* RepoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895BD27D273195770083566E /* RepoViewController.swift */; };
 		895BD280273195B30083566E /* FavRepoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895BD27F273195B30083566E /* FavRepoViewController.swift */; };
 		898CF9782735ADC0001506C1 /* LogoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898CF9772735ADC0001506C1 /* LogoutViewController.swift */; };
-		89E623672732777A00791F12 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E623652732777A00791F12 /* TableViewCell.swift */; };
-		89E623682732777A00791F12 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89E623662732777A00791F12 /* TableViewCell.xib */; };
+		89BF415D273707AC0075AC97 /* ReposModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BF415C273707AC0075AC97 /* ReposModel.swift */; };
+		89E623672732777A00791F12 /* RepoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E623652732777A00791F12 /* RepoTableViewCell.swift */; };
+		89E623682732777A00791F12 /* RepoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89E623662732777A00791F12 /* RepoTableViewCell.xib */; };
+		89E80C14273811E0004F0E1B /* DetailedRepoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E80C13273811E0004F0E1B /* DetailedRepoViewController.swift */; };
 		8A265788CC536B83483900DC /* Pods_myProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB8399F5FCD090A9DCE907E7 /* Pods_myProject.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		892EDB9A273463310015B6E4 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		893857492733EFA8007276EF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		893F91E5273AE83C000528FE /* RepoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoViewModel.swift; sourceTree = "<group>"; };
+		893F91E8273AE98B000528FE /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		895B13092735A468000D707A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		895BD26427318FB80083566E /* myProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		895BD26727318FB80083566E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -35,8 +41,10 @@
 		895BD27D273195770083566E /* RepoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoViewController.swift; sourceTree = "<group>"; };
 		895BD27F273195B30083566E /* FavRepoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavRepoViewController.swift; sourceTree = "<group>"; };
 		898CF9772735ADC0001506C1 /* LogoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutViewController.swift; sourceTree = "<group>"; };
-		89E623652732777A00791F12 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
-		89E623662732777A00791F12 /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
+		89BF415C273707AC0075AC97 /* ReposModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReposModel.swift; sourceTree = "<group>"; };
+		89E623652732777A00791F12 /* RepoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoTableViewCell.swift; sourceTree = "<group>"; };
+		89E623662732777A00791F12 /* RepoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepoTableViewCell.xib; sourceTree = "<group>"; };
+		89E80C13273811E0004F0E1B /* DetailedRepoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedRepoViewController.swift; sourceTree = "<group>"; };
 		96141A7BE42CC1DF56B70FF6 /* Pods-myProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myProject.debug.xcconfig"; path = "Target Support Files/Pods-myProject/Pods-myProject.debug.xcconfig"; sourceTree = "<group>"; };
 		B6DF0AE73E613F806F46706B /* Pods-myProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myProject.release.xcconfig"; path = "Target Support Files/Pods-myProject/Pods-myProject.release.xcconfig"; sourceTree = "<group>"; };
 		FB8399F5FCD090A9DCE907E7 /* Pods_myProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_myProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,6 +79,25 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		893F91E2273AE782000528FE /* RepoScreen */ = {
+			isa = PBXGroup;
+			children = (
+				89C0D445273B034E00123B56 /* ReposCell */,
+				895BD27D273195770083566E /* RepoViewController.swift */,
+				893F91E5273AE83C000528FE /* RepoViewModel.swift */,
+			);
+			path = RepoScreen;
+			sourceTree = "<group>";
+		};
+		893F91E7273AE963000528FE /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				89C0D443273B02DB00123B56 /* Network */,
+				893F91E8273AE98B000528FE /* NetworkService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		895BD25B27318FB70083566E = {
 			isa = PBXGroup;
 			children = (
@@ -92,21 +119,86 @@
 		895BD26627318FB80083566E /* myProject */ = {
 			isa = PBXGroup;
 			children = (
+				89C0D449273B05AB00123B56 /* LogoutScreen */,
+				89C0D448273B059400123B56 /* DetailedRepoScreen */,
+				89C0D447273B057100123B56 /* AuthScreen */,
+				89C0D446273B055300123B56 /* FavRepoScreen */,
+				893F91E7273AE963000528FE /* Services */,
+				893F91E2273AE782000528FE /* RepoScreen */,
 				895BD26727318FB80083566E /* AppDelegate.swift */,
 				895BD26D27318FB80083566E /* Main.storyboard */,
-				898CF9772735ADC0001506C1 /* LogoutViewController.swift */,
-				892EDB9A273463310015B6E4 /* TabBarViewController.swift */,
-				89E623652732777A00791F12 /* TableViewCell.swift */,
-				89E623662732777A00791F12 /* TableViewCell.xib */,
-				895BD27D273195770083566E /* RepoViewController.swift */,
-				895BD27F273195B30083566E /* FavRepoViewController.swift */,
-				895BD27B273191770083566E /* AuthViewController.swift */,
 				895BD27227318FB80083566E /* LaunchScreen.storyboard */,
 				895B13092735A468000D707A /* Assets.xcassets */,
 				893857492733EFA8007276EF /* GoogleService-Info.plist */,
 				895BD27527318FB80083566E /* Info.plist */,
+				89C0D44A273B05CA00123B56 /* TabBar */,
 			);
 			path = myProject;
+			sourceTree = "<group>";
+		};
+		89C0D443273B02DB00123B56 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				89C0D444273B02EC00123B56 /* NetworkModels */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		89C0D444273B02EC00123B56 /* NetworkModels */ = {
+			isa = PBXGroup;
+			children = (
+				89BF415C273707AC0075AC97 /* ReposModel.swift */,
+			);
+			path = NetworkModels;
+			sourceTree = "<group>";
+		};
+		89C0D445273B034E00123B56 /* ReposCell */ = {
+			isa = PBXGroup;
+			children = (
+				89E623652732777A00791F12 /* RepoTableViewCell.swift */,
+				89E623662732777A00791F12 /* RepoTableViewCell.xib */,
+			);
+			path = ReposCell;
+			sourceTree = "<group>";
+		};
+		89C0D446273B055300123B56 /* FavRepoScreen */ = {
+			isa = PBXGroup;
+			children = (
+				895BD27F273195B30083566E /* FavRepoViewController.swift */,
+			);
+			path = FavRepoScreen;
+			sourceTree = "<group>";
+		};
+		89C0D447273B057100123B56 /* AuthScreen */ = {
+			isa = PBXGroup;
+			children = (
+				895BD27B273191770083566E /* AuthViewController.swift */,
+			);
+			path = AuthScreen;
+			sourceTree = "<group>";
+		};
+		89C0D448273B059400123B56 /* DetailedRepoScreen */ = {
+			isa = PBXGroup;
+			children = (
+				89E80C13273811E0004F0E1B /* DetailedRepoViewController.swift */,
+			);
+			path = DetailedRepoScreen;
+			sourceTree = "<group>";
+		};
+		89C0D449273B05AB00123B56 /* LogoutScreen */ = {
+			isa = PBXGroup;
+			children = (
+				898CF9772735ADC0001506C1 /* LogoutViewController.swift */,
+			);
+			path = LogoutScreen;
+			sourceTree = "<group>";
+		};
+		89C0D44A273B05CA00123B56 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				892EDB9A273463310015B6E4 /* TabBarViewController.swift */,
+			);
+			path = TabBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -170,7 +262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				895BD27427318FB80083566E /* LaunchScreen.storyboard in Resources */,
-				89E623682732777A00791F12 /* TableViewCell.xib in Resources */,
+				89E623682732777A00791F12 /* RepoTableViewCell.xib in Resources */,
 				8938574A2733EFA8007276EF /* GoogleService-Info.plist in Resources */,
 				895BD26F27318FB80083566E /* Main.storyboard in Resources */,
 				895B130A2735A468000D707A /* Assets.xcassets in Resources */,
@@ -226,13 +318,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				89E623672732777A00791F12 /* TableViewCell.swift in Sources */,
+				893F91E9273AE98B000528FE /* NetworkService.swift in Sources */,
+				893F91E6273AE83C000528FE /* RepoViewModel.swift in Sources */,
+				89E623672732777A00791F12 /* RepoTableViewCell.swift in Sources */,
 				895BD280273195B30083566E /* FavRepoViewController.swift in Sources */,
 				895BD27C273191770083566E /* AuthViewController.swift in Sources */,
 				895BD26827318FB80083566E /* AppDelegate.swift in Sources */,
 				898CF9782735ADC0001506C1 /* LogoutViewController.swift in Sources */,
 				892EDB9B273463310015B6E4 /* TabBarViewController.swift in Sources */,
 				895BD27E273195770083566E /* RepoViewController.swift in Sources */,
+				89BF415D273707AC0075AC97 /* ReposModel.swift in Sources */,
+				89E80C14273811E0004F0E1B /* DetailedRepoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

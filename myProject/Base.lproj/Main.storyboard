@@ -157,7 +157,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FAm-f7-A8A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1204" y="65"/>
+            <point key="canvasLocation" x="-1204.3478260869565" y="64.955357142857139"/>
         </scene>
         <!--Tab Bar View Controller-->
         <scene sceneID="tAL-9V-YNe">
@@ -187,7 +187,7 @@
             </objects>
             <point key="canvasLocation" x="618.84057971014499" y="64.955357142857139"/>
         </scene>
-        <!--Logout-->
+        <!--Выход-->
         <scene sceneID="rv5-bB-y5u">
             <objects>
                 <viewController id="Kcj-hu-8ZV" customClass="LogoutViewController" customModule="myProject" customModuleProvider="target" sceneMemberID="viewController">
@@ -223,13 +223,13 @@
                             <constraint firstItem="XXn-zD-lev" firstAttribute="centerX" secondItem="OR0-ar-S6B" secondAttribute="centerX" id="zIk-MD-HgI"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Logout" image="logout" id="Ah3-yh-R6K"/>
+                    <tabBarItem key="tabBarItem" title="Выход" image="logout" id="Ah3-yh-R6K"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jZt-dB-HW3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="618.84057971014499" y="767.41071428571422"/>
         </scene>
-        <!--FavRepo-->
+        <!--Избранное-->
         <scene sceneID="McG-1U-uSM">
             <objects>
                 <viewController id="Whc-p0-VRu" customClass="FavRepoViewController" customModule="myProject" customModuleProvider="target" sceneMemberID="viewController">
@@ -239,13 +239,13 @@
                         <viewLayoutGuide key="safeArea" id="FfM-HT-f57"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="FavRepo" image="favRepo" id="f4z-oh-L4k"/>
+                    <tabBarItem key="tabBarItem" title="Избранное" image="favRepo" id="f4z-oh-L4k"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fop-2u-jHi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1452.1739130434785" y="482.8125"/>
         </scene>
-        <!--Repo-->
+        <!--Все репозитории-->
         <scene sceneID="KGK-Zg-NfN">
             <objects>
                 <viewController id="HZm-5g-974" customClass="RepoViewController" customModule="myProject" customModuleProvider="target" sceneMemberID="viewController">
@@ -253,10 +253,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="wXk-rp-mgE">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="wXk-rp-mgE">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="separatorColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="mOv-8Y-JyQ">
+                                <rect key="frame" x="197" y="438" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="lhB-fy-0RC"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -264,17 +269,69 @@
                             <constraint firstItem="wXk-rp-mgE" firstAttribute="top" secondItem="lhB-fy-0RC" secondAttribute="top" id="71D-5f-GL4"/>
                             <constraint firstItem="lhB-fy-0RC" firstAttribute="trailing" secondItem="wXk-rp-mgE" secondAttribute="trailing" id="SJm-PE-vYl"/>
                             <constraint firstItem="wXk-rp-mgE" firstAttribute="leading" secondItem="lhB-fy-0RC" secondAttribute="leading" id="UOK-55-Y8f"/>
+                            <constraint firstItem="mOv-8Y-JyQ" firstAttribute="centerY" secondItem="lRc-ha-UoM" secondAttribute="centerY" id="eEt-RC-UTf"/>
                             <constraint firstItem="lhB-fy-0RC" firstAttribute="bottom" secondItem="wXk-rp-mgE" secondAttribute="bottom" id="kxl-OL-DOz"/>
+                            <constraint firstItem="mOv-8Y-JyQ" firstAttribute="centerX" secondItem="lRc-ha-UoM" secondAttribute="centerX" id="t6V-bX-rn5"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Repo" image="repo" id="QJo-Bb-C7k"/>
+                    <tabBarItem key="tabBarItem" title="Все репозитории" image="repo" id="QJo-Bb-C7k"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="mOv-8Y-JyQ" id="SGJ-sl-WpF"/>
                         <outlet property="tableView" destination="wXk-rp-mgE" id="Pzc-rm-G0g"/>
+                        <segue destination="a7Z-lC-gyT" kind="show" identifier="toDetailedRepo" id="Bq8-L4-03o"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mpX-HD-VUb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1457.9710144927537" y="-169.41964285714286"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="z6L-ms-R82">
+            <objects>
+                <viewController id="a7Z-lC-gyT" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="r0v-hU-wuv">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="52" translatesAutoresizingMaskIntoConstraints="NO" id="uzE-OG-wWF">
+                                <rect key="frame" x="50" y="188" width="314" height="273"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Th8-Rj-Tn7">
+                                        <rect key="frame" x="107" y="0.0" width="100.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Repo Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="86b-Ak-4kN">
+                                        <rect key="frame" x="113" y="72.5" width="88.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="D9c-o7-2Ah">
+                                        <rect key="frame" x="82" y="145" width="150" height="128"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="150" id="DBd-UU-ne0"/>
+                                            <constraint firstAttribute="height" constant="128" id="OjK-TN-kdh"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="aBT-wb-H6C"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="uzE-OG-wWF" firstAttribute="top" secondItem="aBT-wb-H6C" secondAttribute="top" constant="100" id="jQZ-DC-5da"/>
+                            <constraint firstItem="uzE-OG-wWF" firstAttribute="leading" secondItem="aBT-wb-H6C" secondAttribute="leading" constant="50" id="oAW-Gf-OMS"/>
+                            <constraint firstItem="aBT-wb-H6C" firstAttribute="trailing" secondItem="uzE-OG-wWF" secondAttribute="trailing" constant="50" id="rTY-lC-8PV"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="dCq-bY-uKu"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XK3-oi-ffS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2315.9420289855075" y="-169.41964285714286"/>
         </scene>
     </scenes>
     <resources>

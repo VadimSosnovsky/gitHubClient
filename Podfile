@@ -9,4 +9,6 @@ target 'myProject' do
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
 
+  pod 'Kingfisher'
+
 end

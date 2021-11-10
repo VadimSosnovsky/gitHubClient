@@ -7,7 +7,8 @@
 
 import UIKit
 
-class TableViewCell: UITableViewCell {
+
+class RepoTableViewCell: UITableViewCell {
 
     @IBOutlet private weak var name: UILabel!
     @IBOutlet private weak var desc: UILabel!
@@ -15,7 +16,7 @@ class TableViewCell: UITableViewCell {
     @IBOutlet private weak var forks: UILabel!
     @IBOutlet private weak var stars: UILabel!
     @IBOutlet private weak var author: UILabel!
-    @IBOutlet private weak var profilePicture: UIImageView!
+    @IBOutlet weak var profilePicture: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,13 +29,24 @@ class TableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configure() {
-        name.text = "Vadim"
-        desc.text = "21"
-        language.text = "Swift"
-        forks.text = "Forks"
-        stars.text = "Stars"
-        author.text = "Vadim Sosnovsky"
+    func configure(name: String, desc: String, language: String, forks: String, stars: String, author: String) {
+        self.name.text = name
+        self.desc.text = desc
+        self.language.text = language
+        self.forks.text = forks
+        self.stars.text = stars
+        
+        
+    }
+    
+    func getImage(imageId: String, imageView: UIImageView, url: String) {
+        if let url = URL(string: url) {
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    imageView.image = image
+                }
+            }
+        }
     }
     
 }

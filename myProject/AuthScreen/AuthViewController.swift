@@ -60,9 +60,7 @@ extension AuthViewController: UITextFieldDelegate {
         let name = textFieldName.text!
         let email = textFieldEmail.text!
         let password = textFieldPass.text!
-        print("signUp is: \(signUp)")
         if(signUp) {
-            print("I am in")
             if (!name.isEmpty && !email.isEmpty && !password.isEmpty) {
                 
                 Auth.auth().createUser(withEmail: email, password: password) {
