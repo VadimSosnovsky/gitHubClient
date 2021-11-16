@@ -28,14 +28,9 @@ class FavRepoTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configure(name: String, desc: String, language: String, forks: String, stars: String, author: String) {
+    func configure(name: String, desc: String, author: String) {
         self.name.text = name
         self.desc.text = desc
-        self.language.text = language
-        self.forks.text = forks
-        self.stars.text = stars
-        
-        
     }
     
 }

@@ -7,34 +7,34 @@
 
 import Foundation
 import UIKit
+import RealmSwift
 
-struct Repository: Decodable {
-    
-    let name: String?
-    let description: String?
-    let languages: String?
-    let forks: String?
-    let stargazers: String?
-    let owner: Owner
-    
+class Repository: Object, Codable {
+
+    @Persisted var name: String?
+    @Persisted var fullName: String?
+    @Persisted var desc: String?
+    @Persisted var owner: Owner?
+
     enum CodingKeys: String, CodingKey {
-        case name
-        case description
-        case languages = "languages_url"
-        case forks = "forks_url"
-        case stargazers = "stargazers_url"
+        case name = "name"
+        case fullName = "full_name"
+        case desc = "description"
         case owner
+    }
+    
+    override class func primaryKey() -> String? {
+      return "fullName"
     }
 }
 
-struct Owner: Decodable {
-    
-    let login: String?
-    let avatar: URL?
-    
+class Owner: Object, Codable {
+
+    @Persisted var login: String?
+    @Persisted var avatar: String?
+
     enum CodingKeys: String, CodingKey {
-        case login
+        case login = "login"
         case avatar = "avatar_url"
     }
 }
-

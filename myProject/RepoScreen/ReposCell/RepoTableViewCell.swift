@@ -35,18 +35,6 @@ class RepoTableViewCell: UITableViewCell {
         self.language.text = language
         self.forks.text = forks
         self.stars.text = stars
-        
-        
-    }
-    
-    func getImage(imageId: String, imageView: UIImageView, url: String) {
-        if let url = URL(string: url) {
-            if let data = try? Data(contentsOf: url) {
-                if let image = UIImage(data: data) {
-                    imageView.image = image
-                }
-            }
-        }
-    }
-    
+        self.author.text = author
+    }    
 }

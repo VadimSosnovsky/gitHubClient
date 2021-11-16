@@ -22,6 +22,7 @@
 		897FC187273C437E00716FB2 /* FavRepoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 897FC185273C437E00716FB2 /* FavRepoTableViewCell.xib */; };
 		898CF9782735ADC0001506C1 /* LogoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898CF9772735ADC0001506C1 /* LogoutViewController.swift */; };
 		89BF415D273707AC0075AC97 /* ReposModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BF415C273707AC0075AC97 /* ReposModel.swift */; };
+		89C48A04274028B100F04C6B /* DetailedReposModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C48A03274028B100F04C6B /* DetailedReposModel.swift */; };
 		89E623672732777A00791F12 /* RepoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E623652732777A00791F12 /* RepoTableViewCell.swift */; };
 		89E623682732777A00791F12 /* RepoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89E623662732777A00791F12 /* RepoTableViewCell.xib */; };
 		89E80C14273811E0004F0E1B /* DetailedRepoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E80C13273811E0004F0E1B /* DetailedRepoViewController.swift */; };
@@ -46,6 +47,7 @@
 		897FC185273C437E00716FB2 /* FavRepoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavRepoTableViewCell.xib; sourceTree = "<group>"; };
 		898CF9772735ADC0001506C1 /* LogoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutViewController.swift; sourceTree = "<group>"; };
 		89BF415C273707AC0075AC97 /* ReposModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReposModel.swift; sourceTree = "<group>"; };
+		89C48A03274028B100F04C6B /* DetailedReposModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedReposModel.swift; sourceTree = "<group>"; };
 		89E623652732777A00791F12 /* RepoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoTableViewCell.swift; sourceTree = "<group>"; };
 		89E623662732777A00791F12 /* RepoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepoTableViewCell.xib; sourceTree = "<group>"; };
 		89E80C13273811E0004F0E1B /* DetailedRepoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedRepoViewController.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				89BF415C273707AC0075AC97 /* ReposModel.swift */,
+				89C48A03274028B100F04C6B /* DetailedReposModel.swift */,
 			);
 			path = NetworkModels;
 			sourceTree = "<group>";
@@ -343,6 +346,7 @@
 				897FC186273C437E00716FB2 /* FavRepoTableViewCell.swift in Sources */,
 				892EDB9B273463310015B6E4 /* TabBarViewController.swift in Sources */,
 				895BD27E273195770083566E /* RepoViewController.swift in Sources */,
+				89C48A04274028B100F04C6B /* DetailedReposModel.swift in Sources */,
 				89BF415D273707AC0075AC97 /* ReposModel.swift in Sources */,
 				89E80C14273811E0004F0E1B /* DetailedRepoViewController.swift in Sources */,
 			);

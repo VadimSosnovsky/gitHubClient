@@ -8,7 +8,8 @@ target 'myProject' do
   pod 'Firebase/Analytics'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
-
+  
+  pod 'RealmSwift', '~> 10.19'	
   pod 'Kingfisher'
 
 end

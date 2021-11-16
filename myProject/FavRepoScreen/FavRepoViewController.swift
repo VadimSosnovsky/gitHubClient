@@ -17,20 +17,23 @@ class FavRepoViewController: UIViewController, UITableViewDelegate, UITableViewD
     private var selectedRepo: Repository?
     private let viewModel = RepoViewModel()
     private var repos = [Repository]()
+    private var reposDetailed = DetailedRepository()
+    private var links = [URL(string: "https://api.github.com/repositories")]
     
     let myRefreshControl : UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
         return refreshControl
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         activityIndicator.startAnimating()
         viewModel.delegate = self
         configureTableView()
-        viewModel.getReposData()
+        viewModel.getReposData(url: links[0]!)
+        //viewModel.fetchDataFromDataBase()
         tableView.refreshControl = myRefreshControl
     }
     
@@ -48,13 +51,11 @@ class FavRepoViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "myCellFavRepo", for: indexPath) as? FavRepoTableViewCell {
             cell.configure(name: repos[indexPath.row].name ?? "",
-                           desc: repos[indexPath.row].description ?? "",
-                           language: repos[indexPath.row].languages ?? "",
-                           forks: repos[indexPath.row].forks ?? "",
-                           stars: repos[indexPath.row].stargazers ?? "",
-                           author: repos[indexPath.row].owner.login ?? "")
+                           desc: repos[indexPath.row].desc ?? "",
+                           author: repos[indexPath.row].owner?.login ?? "")
             
-            KF.url(repos[indexPath.row].owner.avatar)
+            let url = URL(string: "\(repos[indexPath.row].owner?.avatar ?? "")")
+            KF.url(url)
                 .set(to: cell.profilePicture)
             
             
@@ -81,10 +82,32 @@ class FavRepoViewController: UIViewController, UITableViewDelegate, UITableViewD
 
 extension FavRepoViewController: RepoViewModelDelegate {
     
+    func dadaDidReceiveReposFromDataBase(data: [Repository]) {
+        self.repos = data
+        DispatchQueue.main.async {[weak self] in
+            self?.tableView.reloadData()
+        }
+    }
+    
     func dataDidRecieveReposData(data: [Repository]) {
         DispatchQueue.main.async { [weak self] in
             print("Данные загружены")
             self?.repos = data
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+                self?.tableView.reloadData()
+                self?.activityIndicator.stopAnimating()
+                self?.activityIndicator.isHidden = true
+            }
+        }
+    }
+    
+    func dataDidRecieveDetailedReposData(data: DetailedRepository) {
+        DispatchQueue.main.async { [weak self] in
+            print("Данные загружены")
+            self?.reposDetailed = data
+            
+            //self?.viewModel.getDetailedReposData(data: self!.repos)
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
                 self?.tableView.reloadData()
