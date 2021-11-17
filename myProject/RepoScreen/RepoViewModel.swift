@@ -12,6 +12,7 @@ protocol RepoViewModelDelegate: AnyObject {
     func dataDidRecieveReposData(data: [Repository])
     func dadaDidReceiveReposFromDataBase(data: [Repository])
     func dataDidRecieveDetailedReposData(data: DetailedRepository)
+    func dataDidRecieveAllReposData(data: [RepositoryData])
     func error()
 }
 
@@ -45,7 +46,10 @@ class RepoViewModel {
         }
     }
     
-    func getDetailedReposData(url: URL)  {
+    private var detailed = DetailedRepository()
+    private var rp = [RepositoryData](repeating: RepositoryData(), count: 100)
+    
+    func getDetailedReposData(url: URL) {
         
         var reposUrl = URLRequest(url: url)
         reposUrl.addValue("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", forHTTPHeaderField: "Authorization")
@@ -55,6 +59,7 @@ class RepoViewModel {
                 self?.delegate?.error()
                 return
             }
+            
             self?.delegate?.dataDidRecieveDetailedReposData(data: reposModels)
         }
     }
@@ -69,5 +74,39 @@ class RepoViewModel {
                 print("database error")
             }
         }
+    }
+    
+    func getAllinfo(data: [Repository]) {
+        
+        data.forEach { item in
+            
+            let url = URL(string: "https://api.github.com/repos/\(item.fullName ?? "")")
+            getDetailedReposData(url: url!)
+        }
+    }
+    
+    func getAllDetailedInfo(repos: [Repository], detailedRepos: [DetailedRepository]) {
+        
+        var reposData = [RepositoryData]()
+        
+        var i = 0
+        while i < repos.count {
+            
+            let rep = RepositoryData()
+
+            rep.name = repos[i].name
+            rep.fullName = repos[i].fullName
+            rep.desc = repos[i].desc
+            rep.login = repos[i].owner?.login
+            rep.avatar = repos[i].owner?.avatar
+            rep.language = detailedRepos[i].language
+            rep.stargazers = detailedRepos[i].stargazers
+            rep.forks = detailedRepos[i].forks
+            reposData.append(rep)
+            
+            i += 1
+        }
+        
+        self.delegate?.dataDidRecieveAllReposData(data: reposData)
     }
 }

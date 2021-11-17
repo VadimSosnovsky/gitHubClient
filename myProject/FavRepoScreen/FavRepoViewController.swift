@@ -18,6 +18,7 @@ class FavRepoViewController: UIViewController, UITableViewDelegate, UITableViewD
     private let viewModel = RepoViewModel()
     private var repos = [Repository]()
     private var reposDetailed = DetailedRepository()
+    private var reposData = [RepositoryData]()
     private var links = [URL(string: "https://api.github.com/repositories")]
     
     let myRefreshControl : UIRefreshControl = {
@@ -93,6 +94,7 @@ extension FavRepoViewController: RepoViewModelDelegate {
         DispatchQueue.main.async { [weak self] in
             print("Данные загружены")
             self?.repos = data
+            self?.viewModel.getAllinfo(data: self!.repos)
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
                 self?.tableView.reloadData()
@@ -115,6 +117,10 @@ extension FavRepoViewController: RepoViewModelDelegate {
                 self?.activityIndicator.isHidden = true
             }
         }
+    }
+    
+    func dataDidRecieveAllReposData(data: [RepositoryData]) {
+        reposData = data
     }
     
     func error() {

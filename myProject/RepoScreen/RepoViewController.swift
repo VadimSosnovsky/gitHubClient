@@ -16,7 +16,8 @@ class RepoViewController: UIViewController, UITableViewDelegate, UITableViewData
     private var selectedRepo: Repository?
     private let viewModel = RepoViewModel()
     private var repos = [Repository]()
-    private var reposDetailed = DetailedRepository()
+    private var reposDetailed = [DetailedRepository]()
+    private var reposData = [RepositoryData]()
     private var links = [URL(string: "https://api.github.com/repositories")]
     
     let myRefreshControl : UIRefreshControl = {
@@ -50,16 +51,16 @@ class RepoViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "myCellRepo", for: indexPath) as? RepoTableViewCell {
-
-            cell.configure(name: repos[indexPath.row].name ?? "",
-                           desc: repos[indexPath.row].desc ?? "",
-                           language: reposDetailed.language ?? "Undefined",
-                           forks: "\(reposDetailed.forks ?? 0)" ,
-                           stars: "\(reposDetailed.stargazers ?? 0)",
-                           author: repos[indexPath.row].owner?.login ?? "")
+            
+            cell.configure(name: reposData[indexPath.row].name ?? "",
+                           desc: reposData[indexPath.row].desc ?? "",
+                           language: reposData[indexPath.row].language ?? "",
+                           forks: "\(reposData[indexPath.row].forks ?? 0)" ,
+                           stars: "\(reposData[indexPath.row].stargazers ?? 0)",
+                           author: reposData[indexPath.row].login ?? "")
             
 
-            KF.url(URL(string: "\(repos[indexPath.row].owner?.avatar ?? "")"))
+            KF.url(URL(string: "\(reposData[indexPath.row].avatar ?? "")"))
                 .set(to: cell.profilePicture)
             
             return cell
@@ -73,7 +74,7 @@ class RepoViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return repos.count
+        return reposData.count
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -96,16 +97,7 @@ extension RepoViewController: RepoViewModelDelegate {
         DispatchQueue.main.async { [weak self] in
             print("Данные загружены")
             self?.repos = data
-            
-//            var i = 0
-//            while i < self!.repos.count {
-//                let url = URL(string: "https://api.github.com/repos/\(self?.repos[i].fullName ?? "")")
-//                self?.viewModel.getDetailedReposData(url: url!)
-//                i += 1
-//            }
-            
-            let url = URL(string: "https://api.github.com/repos/mojombo/grit")
-            self?.viewModel.getDetailedReposData(url: url!)
+            self?.viewModel.getAllinfo(data: self!.repos)
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
                 self?.tableView.reloadData()
@@ -118,10 +110,9 @@ extension RepoViewController: RepoViewModelDelegate {
     func dataDidRecieveDetailedReposData(data: DetailedRepository) {
         DispatchQueue.main.async { [weak self] in
             print("Данные загружены")
-            self?.reposDetailed = data
-            //print(self?.reposDetailed.forks)
-            
-            //self?.viewModel.getDetailedReposData(data: self!.repos)
+            self?.reposDetailed.append(data)
+            if(self?.reposDetailed.count == self?.repos.count) {
+                self?.viewModel.getAllDetailedInfo(repos: self?.repos ?? [Repository](), detailedRepos: self?.reposDetailed ?? [DetailedRepository]())            }
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
                 self?.tableView.reloadData()
@@ -129,6 +120,10 @@ extension RepoViewController: RepoViewModelDelegate {
                 self?.activityIndicator.isHidden = true
             }
         }
+    }
+    
+    func dataDidRecieveAllReposData(data: [RepositoryData]) {
+        reposData = data
     }
     
     
