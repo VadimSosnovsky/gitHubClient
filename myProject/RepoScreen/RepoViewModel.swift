@@ -7,6 +7,7 @@
 
 import Foundation
 import RealmSwift
+import Firebase
 
 protocol RepoViewModelDelegate: AnyObject {
     func dataDidRecieveReposData(data: [Repository])
@@ -22,23 +23,43 @@ class RepoViewModel {
     
     weak var delegate: RepoViewModelDelegate?
     
-
-//    private let localRealm = try! Realm(configuration: Realm.Configuration.init(
-//        fileURL: Realm.Configuration().fileURL!.deletingLastPathComponent().appendingPathComponent("\(User.userID).realm")))
+    var rep = ""
     
-    private let localRealm = try! Realm()
+    static func getUserID() -> String {
+        var ID = ""
+        
+       if let uid = Auth.auth().currentUser?.uid {
+           
+           ID = uid
+       }
+        return ID
+    }
+    
+//    init() {
+//        self.User.userID = getUserID()
+//    }
+    
+    
+//    private let localRealm = try! Realm(configuration: Realm.Configuration.init(
+//        fileURL: Realm.Configuration().fileURL!.deletingLastPathComponent().appendingPathComponent("MH0hI0jGt5POguoKqY86uylzC2A3.realm")))
+//
+    //private let localRealm = try! Realm()
     
     func fetchDataFromDataBase() {
+        
+        let localRealm = try! Realm(configuration: Realm.Configuration.init(
+            fileURL: Realm.Configuration().fileURL!.deletingLastPathComponent().appendingPathComponent("\(RepoViewModel.getUserID()).realm")))
+        
         let realmRepos = Array(localRealm.objects(RepositoryData.self))
         guard !realmRepos.isEmpty else {
             print("Empty")
             return
         }
-        
         delegate?.dadaDidReceiveReposFromDataBase(data: realmRepos)
     }
     
     func getReposData(url: URL)  {
+        //print(RepoViewModel.getUserID())
         var reposUrl = URLRequest(url: url)
         reposUrl.addValue("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", forHTTPHeaderField: "Authorization")
         reposUrl.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -88,13 +109,14 @@ class RepoViewModel {
     
     func saveReposToDataBase(models: RepositoryData) {
         
-//        let localRealm = try! Realm(configuration: Realm.Configuration.init(
-//            fileURL: Realm.Configuration().fileURL!.deletingLastPathComponent().appendingPathComponent("\(User.userID).realm")))
+        let localRealm = try! Realm(configuration: Realm.Configuration.init(
+            fileURL: Realm.Configuration().fileURL!.deletingLastPathComponent().appendingPathComponent("\(RepoViewModel.getUserID()).realm")))
         
         DispatchQueue.main.async { [weak self] in
             do {
-                try self?.localRealm.write {
-                    self?.localRealm.add(models, update: .modified)
+                try localRealm.write {
+                    self?.rep = "rep"
+                    localRealm.add(models, update: .modified)
                 }
             } catch {
                 print("database error")
@@ -103,10 +125,14 @@ class RepoViewModel {
     }
     
     func deleteReposFromDataBase(models: RepositoryData) {
+        
+        let localRealm = try! Realm(configuration: Realm.Configuration.init(
+            fileURL: Realm.Configuration().fileURL!.deletingLastPathComponent().appendingPathComponent("\(RepoViewModel.getUserID()).realm")))
+        
         DispatchQueue.main.async { [weak self] in
             do {
-                try self?.localRealm.write {
-                    self?.localRealm.delete(models)
+                try localRealm.write {
+                    localRealm.delete(models)
                 }
             } catch {
                 print("database error")

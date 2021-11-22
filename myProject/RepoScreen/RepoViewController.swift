@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import Firebase
 
 class RepoViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -88,6 +89,10 @@ class RepoViewController: UIViewController, UITableViewDelegate, UITableViewData
                 .set(to: cell.profilePicture)
            
             cell.addButton.addTarget(self, action: #selector(self.btnAction(_:)), for: .touchUpInside)
+//            cell.addButton.tintColor = .clear
+//            cell.addButton.backgroundColor = .clear
+//            let imgAfter: UIImage = UIImage(named: "filled_star")!
+//            cell.addButton.setImage(imgAfter, for: .normal)
             
             return cell
         } else {
@@ -96,7 +101,7 @@ class RepoViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @objc func btnAction(_ sender: UIButton) {
-
+        
         let point = sender.convert(CGPoint.zero, to: tableView as UIView)
         let indexPath: IndexPath! = tableView.indexPathForRow(at: point)
         
@@ -124,6 +129,13 @@ class RepoViewController: UIViewController, UITableViewDelegate, UITableViewData
         viewModel.getFullReposData(url: url!)
         
         //performSegue(withIdentifier: "toDetailedRepo", sender: self)
+    }
+    @IBAction func logoutButton(_ sender: Any) {
+        do {
+            try Auth.auth().signOut()
+        } catch {
+            print(error)
+        }
     }
 }
 

@@ -38,6 +38,15 @@ class FavRepoViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.refreshControl = myRefreshControl
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        activityIndicator.startAnimating()
+        viewModel.delegate = self
+        configureTableView()
+        viewModel.fetchDataFromDataBase()
+        tableView.reloadData()
+        tableView.refreshControl = myRefreshControl
+    }
+    
     @objc private func refresh(sender: UIRefreshControl) {
         viewModel.fetchDataFromDataBase()
         tableView.reloadData()
