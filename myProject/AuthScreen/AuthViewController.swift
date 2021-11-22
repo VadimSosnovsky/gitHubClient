@@ -71,6 +71,8 @@ extension AuthViewController: UITextFieldDelegate {
                             let ref = Database.database().reference().child("users")
                             ref.child(result.user.uid).updateChildValues(["name": name, "email" : email])
                             self.dismiss(animated: true, completion: nil)
+                            User.userID = result.user.uid
+                            print(User.userID)
                         }
                     }
                 }
@@ -84,6 +86,8 @@ extension AuthViewController: UITextFieldDelegate {
                     (result, error) in
                     if error == nil {
                         self.dismiss(animated: true, completion: nil)
+                        User.userID = result?.user.uid ?? ""
+                        print(User.userID)
                     }
                 }
             } else {

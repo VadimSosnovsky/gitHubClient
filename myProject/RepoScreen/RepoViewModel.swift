@@ -10,9 +10,11 @@ import RealmSwift
 
 protocol RepoViewModelDelegate: AnyObject {
     func dataDidRecieveReposData(data: [Repository])
-    func dadaDidReceiveReposFromDataBase(data: [Repository])
+    func dadaDidReceiveReposFromDataBase(data: [RepositoryData])
+    func dadaDidDeleteReposFromDataBase(data: RepositoryData)
     func dataDidRecieveDetailedReposData(data: DetailedRepository)
     func dataDidRecieveAllReposData(data: [RepositoryData])
+    func dataDidRecieveFullReposData(data: [FullRepository])
     func error()
 }
 
@@ -20,11 +22,16 @@ class RepoViewModel {
     
     weak var delegate: RepoViewModelDelegate?
     
+
+//    private let localRealm = try! Realm(configuration: Realm.Configuration.init(
+//        fileURL: Realm.Configuration().fileURL!.deletingLastPathComponent().appendingPathComponent("\(User.userID).realm")))
+    
     private let localRealm = try! Realm()
     
     func fetchDataFromDataBase() {
-        let realmRepos = Array(localRealm.objects(Repository.self))
+        let realmRepos = Array(localRealm.objects(RepositoryData.self))
         guard !realmRepos.isEmpty else {
+            print("Empty")
             return
         }
         
@@ -41,7 +48,7 @@ class RepoViewModel {
                 return
             }
             
-            self?.saveReposToDataBase(models: reposModels)
+            //self?.saveReposToDataBase(models: reposModels)
             self?.delegate?.dataDidRecieveReposData(data: reposModels)
         }
     }
@@ -64,7 +71,26 @@ class RepoViewModel {
         }
     }
     
-    private func saveReposToDataBase(models: [Repository]) {
+    func getFullReposData(url: URL) {
+        
+        var reposUrl = URLRequest(url: url)
+        reposUrl.addValue("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", forHTTPHeaderField: "Authorization")
+        reposUrl.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        NetworkService.shared.getFullReposData(url: reposUrl) { [weak self] repos in
+            guard let reposModels = repos else {
+                self?.delegate?.error()
+                return
+            }
+            
+            self?.delegate?.dataDidRecieveFullReposData(data: reposModels)
+        }
+    }
+    
+    func saveReposToDataBase(models: RepositoryData) {
+        
+//        let localRealm = try! Realm(configuration: Realm.Configuration.init(
+//            fileURL: Realm.Configuration().fileURL!.deletingLastPathComponent().appendingPathComponent("\(User.userID).realm")))
+        
         DispatchQueue.main.async { [weak self] in
             do {
                 try self?.localRealm.write {
@@ -76,11 +102,25 @@ class RepoViewModel {
         }
     }
     
+    func deleteReposFromDataBase(models: RepositoryData) {
+        DispatchQueue.main.async { [weak self] in
+            do {
+                try self?.localRealm.write {
+                    self?.localRealm.delete(models)
+                }
+            } catch {
+                print("database error")
+            }
+            
+            self?.delegate?.dadaDidDeleteReposFromDataBase(data: models)
+        }
+    }
+    
     func getAllinfo(data: [Repository]) {
         
         data.forEach { item in
             
-            let url = URL(string: "https://api.github.com/repos/\(item.fullName ?? "")")
+        let url = URL(string: "https://api.github.com/repos/\(item.fullName ?? "")")
             getDetailedReposData(url: url!)
         }
     }
@@ -94,6 +134,7 @@ class RepoViewModel {
             
             let rep = RepositoryData()
 
+            rep.id = repos[i].id
             rep.name = repos[i].name
             rep.fullName = repos[i].fullName
             rep.desc = repos[i].desc

@@ -37,5 +37,18 @@ class NetworkService {
         
         task.resume()
     }
+    
+    func getFullReposData(url: URLRequest, completion: @escaping ([FullRepository]?) -> Void) {
+        let task = URLSession.shared.dataTask(with: url) { data, responce, error in
+            do {
+                let repositories = try JSONDecoder().decode([FullRepository].self, from: data!)
+                completion(repositories)
+            } catch {
+                completion(nil)
+            }
+        }
+        
+        task.resume()
+    }
 
 }

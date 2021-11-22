@@ -6,17 +6,22 @@
 //
 
 import Foundation
+import RealmSwift
 
-class RepositoryData {
+class RepositoryData: Object, Codable {
 
+    @Persisted var id: Int?
+    @Persisted var name: String?
+    @Persisted var fullName: String?
+    @Persisted var desc: String?
+    @Persisted var login: String?
+    @Persisted var avatar: String?
     
-    var name: String?
-    var fullName: String?
-    var desc: String?
-    var login: String?
-    var avatar: String?
+    @Persisted var language: String?
+    @Persisted var stargazers: Int?
+    @Persisted var forks: Int?
     
-    var language: String?
-    var stargazers: Int?
-    var forks: Int?
+    override class func primaryKey() -> String? {
+      return "id"
+    }
 }

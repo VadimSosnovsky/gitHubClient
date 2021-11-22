@@ -13,11 +13,12 @@ class RepoViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     
-    private var selectedRepo: Repository?
+    private var selectedRepo: RepositoryData?
     private let viewModel = RepoViewModel()
     private var repos = [Repository]()
     private var reposDetailed = [DetailedRepository]()
     private var reposData = [RepositoryData]()
+    private var reposFull = [FullRepository]()
     private var links = [URL(string: "https://api.github.com/repositories")]
     
     let myRefreshControl : UIRefreshControl = {
@@ -33,7 +34,6 @@ class RepoViewController: UIViewController, UITableViewDelegate, UITableViewData
         viewModel.delegate = self
         configureTableView()
         viewModel.getReposData(url: links[0]!)
-        //viewModel.fetchDataFromDataBase()
         tableView.refreshControl = myRefreshControl
     }
     
@@ -47,6 +47,30 @@ class RepoViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "RepoTableViewCell", bundle: .main), forCellReuseIdentifier: "myCellRepo")
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destVC = segue.destination as? FullRepoViewController,
+           let selectedRepo = selectedRepo {
+            destVC.repo = selectedRepo.name ?? ""
+            destVC.author = selectedRepo.login!
+            destVC.image = selectedRepo.avatar!
+            
+            var info = ""
+            var counter = 1
+            
+            outofloop: for item in  reposFull {
+                if(counter > 10) {
+                    break outofloop
+                }
+                info += "\(counter) \n"
+                info += "\(item.commit?.committer?.date ?? "") \n"
+                info += "\(item.commit?.message  ?? "")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                counter += 1
+            }
+                
+                destVC.info = info
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -62,11 +86,26 @@ class RepoViewController: UIViewController, UITableViewDelegate, UITableViewData
 
             KF.url(URL(string: "\(reposData[indexPath.row].avatar ?? "")"))
                 .set(to: cell.profilePicture)
+           
+            cell.addButton.addTarget(self, action: #selector(self.btnAction(_:)), for: .touchUpInside)
             
             return cell
         } else {
             return UITableViewCell()
         }
+    }
+    
+    @objc func btnAction(_ sender: UIButton) {
+
+        let point = sender.convert(CGPoint.zero, to: tableView as UIView)
+        let indexPath: IndexPath! = tableView.indexPathForRow(at: point)
+        
+        selectedRepo = reposData[indexPath.row]
+        print(selectedRepo?.fullName ?? "Unknown")
+        
+        print("row is = \(indexPath.row) && section is = \(indexPath.section)")
+        
+        viewModel.saveReposToDataBase(models: selectedRepo ?? RepositoryData())
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -78,16 +117,26 @@ class RepoViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedRepo = repos[indexPath.row]
+        selectedRepo = reposData[indexPath.row]
         
-        performSegue(withIdentifier: "toDetailedRepo", sender: self)
+        let url = URL(string: "https://api.github.com/repos/\(selectedRepo?.fullName ?? "")/commits")
+        print(url ?? "")
+        viewModel.getFullReposData(url: url!)
+        
+        //performSegue(withIdentifier: "toDetailedRepo", sender: self)
     }
 }
 
 extension RepoViewController: RepoViewModelDelegate {
     
-    func dadaDidReceiveReposFromDataBase(data: [Repository]) {
-        self.repos = data
+    
+    func dadaDidDeleteReposFromDataBase(data: RepositoryData) {
+        
+    }
+    
+    
+    func dadaDidReceiveReposFromDataBase(data: [RepositoryData]) {
+        //self.repos = data
         DispatchQueue.main.async {[weak self] in
             self?.tableView.reloadData()
         }
@@ -97,6 +146,8 @@ extension RepoViewController: RepoViewModelDelegate {
         DispatchQueue.main.async { [weak self] in
             print("Данные загружены")
             self?.repos = data
+//            User.i = 0
+//            self?.viewModel.getAllinfo(data: self!.repos, i: User.i)
             self?.viewModel.getAllinfo(data: self!.repos)
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
@@ -113,6 +164,10 @@ extension RepoViewController: RepoViewModelDelegate {
             self?.reposDetailed.append(data)
             if(self?.reposDetailed.count == self?.repos.count) {
                 self?.viewModel.getAllDetailedInfo(repos: self?.repos ?? [Repository](), detailedRepos: self?.reposDetailed ?? [DetailedRepository]())            }
+//            else {
+//                User.i += 1
+//                self?.viewModel.getAllinfo(data: self!.repos, i: User.i)
+//            }
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
                 self?.tableView.reloadData()
@@ -123,7 +178,33 @@ extension RepoViewController: RepoViewModelDelegate {
     }
     
     func dataDidRecieveAllReposData(data: [RepositoryData]) {
-        reposData = data
+        
+        DispatchQueue.main.async { [weak self] in
+            print("Данные загружены")
+            self?.reposData = data
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+                self?.tableView.reloadData()
+                self?.activityIndicator.stopAnimating()
+                self?.activityIndicator.isHidden = true
+            }
+        }
+    }
+    
+    func dataDidRecieveFullReposData(data: [FullRepository]) {
+        
+        DispatchQueue.main.async { [weak self] in
+            print("Данные загружены")
+            self?.reposFull = data
+            self?.performSegue(withIdentifier: "toDetailedRepo", sender: self)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+                self?.tableView.reloadData()
+                self?.activityIndicator.stopAnimating()
+                self?.activityIndicator.isHidden = true
+            }
+        }
+        print("stole the data!")
     }
     
     

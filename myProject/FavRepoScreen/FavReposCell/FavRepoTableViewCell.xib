@@ -65,12 +65,19 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mUr-Se-Gpw">
+                        <rect key="frame" x="301" y="10" width="79" height="31"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="filled" title="Удалить"/>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="jMV-LF-xbb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="5TX-4K-lb0"/>
                     <constraint firstItem="jMV-LF-xbb" firstAttribute="top" secondItem="u5X-Kl-sDa" secondAttribute="bottom" constant="20" id="70W-ns-tmh"/>
                     <constraint firstItem="ahC-p1-4cB" firstAttribute="top" secondItem="Zh3-dM-5Uy" secondAttribute="bottom" constant="20" id="9wT-fz-ufZ"/>
+                    <constraint firstItem="mUr-Se-Gpw" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="Auo-80-hof"/>
                     <constraint firstItem="Zh3-dM-5Uy" firstAttribute="top" secondItem="dFA-Qr-1gO" secondAttribute="bottom" constant="20" id="GV8-4u-Ec0"/>
+                    <constraint firstAttribute="trailing" secondItem="mUr-Se-Gpw" secondAttribute="trailing" constant="10" id="JAq-d9-904"/>
                     <constraint firstItem="u5X-Kl-sDa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="MS0-k6-eZv"/>
                     <constraint firstItem="ahC-p1-4cB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Nhu-fO-Tgk"/>
                     <constraint firstItem="32m-CS-hVl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="OVN-21-dPa"/>
@@ -93,6 +100,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="author" destination="u5X-Kl-sDa" id="ugE-23-YJw"/>
+                <outlet property="deleteButton" destination="mUr-Se-Gpw" id="T6s-H9-qaN"/>
                 <outlet property="desc" destination="dFA-Qr-1gO" id="Ub5-ts-RXz"/>
                 <outlet property="forks" destination="ahC-p1-4cB" id="FgV-Qk-ERO"/>
                 <outlet property="language" destination="Zh3-dM-5Uy" id="xV8-Rg-bBS"/>

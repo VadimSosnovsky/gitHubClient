@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import RealmSwift
 
 class RepoTableViewCell: UITableViewCell {
 
@@ -17,6 +17,9 @@ class RepoTableViewCell: UITableViewCell {
     @IBOutlet private weak var stars: UILabel!
     @IBOutlet private weak var author: UILabel!
     @IBOutlet weak var profilePicture: UIImageView!
+    @IBOutlet weak var addButton: UIButton!
+    
+    private let localRealm = try! Realm()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -36,5 +39,5 @@ class RepoTableViewCell: UITableViewCell {
         self.forks.text = forks
         self.stars.text = stars
         self.author.text = author
-    }    
+    }
 }

@@ -14,9 +14,9 @@ class FavRepoViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     
     
-    private var selectedRepo: Repository?
+    private var selectedRepo: RepositoryData?
     private let viewModel = RepoViewModel()
-    private var repos = [Repository]()
+    private var repos = [RepositoryData]()
     private var reposDetailed = DetailedRepository()
     private var reposData = [RepositoryData]()
     private var links = [URL(string: "https://api.github.com/repositories")]
@@ -33,12 +33,13 @@ class FavRepoViewController: UIViewController, UITableViewDelegate, UITableViewD
         activityIndicator.startAnimating()
         viewModel.delegate = self
         configureTableView()
-        viewModel.getReposData(url: links[0]!)
-        //viewModel.fetchDataFromDataBase()
+        viewModel.fetchDataFromDataBase()
+        tableView.reloadData()
         tableView.refreshControl = myRefreshControl
     }
     
     @objc private func refresh(sender: UIRefreshControl) {
+        viewModel.fetchDataFromDataBase()
         tableView.reloadData()
         sender.endRefreshing()
     }
@@ -51,19 +52,35 @@ class FavRepoViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "myCellFavRepo", for: indexPath) as? FavRepoTableViewCell {
+            
             cell.configure(name: repos[indexPath.row].name ?? "",
                            desc: repos[indexPath.row].desc ?? "",
-                           author: repos[indexPath.row].owner?.login ?? "")
+                           language: repos[indexPath.row].language ?? "",
+                           forks: "\(repos[indexPath.row].forks ?? 0)" ,
+                           stars: "\(repos[indexPath.row].stargazers ?? 0)",
+                           author: repos[indexPath.row].login ?? "")
             
-            let url = URL(string: "\(repos[indexPath.row].owner?.avatar ?? "")")
-            KF.url(url)
+
+            KF.url(URL(string: "\(repos[indexPath.row].avatar ?? "")"))
                 .set(to: cell.profilePicture)
             
+            cell.deleteButton.addTarget(self, action: #selector(self.btnAction(_:)), for: .touchUpInside)
             
             return cell
         } else {
             return UITableViewCell()
         }
+    }
+    
+    @objc func btnAction(_ sender: UIButton) {
+
+        let point = sender.convert(CGPoint.zero, to: tableView as UIView)
+        let indexPath: IndexPath! = tableView.indexPathForRow(at: point)
+        
+        selectedRepo = repos[indexPath.row]
+        
+        viewModel.deleteReposFromDataBase(models: selectedRepo ?? RepositoryData())
+        tableView.reloadData()
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -83,19 +100,26 @@ class FavRepoViewController: UIViewController, UITableViewDelegate, UITableViewD
 
 extension FavRepoViewController: RepoViewModelDelegate {
     
-    func dadaDidReceiveReposFromDataBase(data: [Repository]) {
+    func dadaDidDeleteReposFromDataBase(data: RepositoryData) {
+        //tableView.reloadData()
+    }
+    
+
+    func dadaDidReceiveReposFromDataBase(data: [RepositoryData]) {
         self.repos = data
         DispatchQueue.main.async {[weak self] in
             self?.tableView.reloadData()
+            self?.activityIndicator.stopAnimating()
+            self?.activityIndicator.isHidden = true
         }
     }
-    
+
     func dataDidRecieveReposData(data: [Repository]) {
         DispatchQueue.main.async { [weak self] in
             print("Данные загружены")
-            self?.repos = data
-            self?.viewModel.getAllinfo(data: self!.repos)
-            
+            //self?.repos = data
+            //self?.viewModel.getAllinfo(data: self!.repos)
+
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
                 self?.tableView.reloadData()
                 self?.activityIndicator.stopAnimating()
@@ -103,14 +127,14 @@ extension FavRepoViewController: RepoViewModelDelegate {
             }
         }
     }
-    
+
     func dataDidRecieveDetailedReposData(data: DetailedRepository) {
         DispatchQueue.main.async { [weak self] in
             print("Данные загружены")
             self?.reposDetailed = data
-            
+
             //self?.viewModel.getDetailedReposData(data: self!.repos)
-            
+
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
                 self?.tableView.reloadData()
                 self?.activityIndicator.stopAnimating()
@@ -118,11 +142,15 @@ extension FavRepoViewController: RepoViewModelDelegate {
             }
         }
     }
-    
+
     func dataDidRecieveAllReposData(data: [RepositoryData]) {
         reposData = data
     }
-    
+
+    func dataDidRecieveFullReposData(data: [FullRepository]) {
+
+    }
+
     func error() {
         DispatchQueue.main.async { [weak self] in
             let a = self.hashValue
