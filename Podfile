@@ -12,4 +12,6 @@ target 'myProject' do
   pod 'RealmSwift', '~> 10.19'	
   pod 'Kingfisher'
 
+  pod 'lottie-ios', '~> 3.2'
+
 end

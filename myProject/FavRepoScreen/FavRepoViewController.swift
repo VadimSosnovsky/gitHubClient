@@ -34,29 +34,29 @@ class FavRepoViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        activityIndicator.startAnimating()
-        tableView.refreshControl = myRefreshControl
         viewModel.delegate = self
         configureTableView()
         viewModel.fetchDataFromDataBase()
-        //tableView.reloadData()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         print("Обновляю willAppear")
-        //tableView.reloadData()
-        activityIndicator.startAnimating()
+        if (tableView.visibleCells.count > 0) {
+            activityIndicator.startAnimating()
+        } else {
+            activityIndicator.isHidden = true
+        }
         viewModel.delegate = self
         configureTableView()
-        viewModel.fetchDataFromDataBase()
         tableView.reloadData()
+        viewModel.fetchDataFromDataBase()
         tableView.refreshControl = myRefreshControl
     }
 
     
     @objc private func refresh(sender: UIRefreshControl) {
-        viewModel.fetchDataFromDataBase()
         tableView.reloadData()
+        viewModel.fetchDataFromDataBase()
         sender.endRefreshing()
     }
     
@@ -95,6 +95,10 @@ class FavRepoViewController: UIViewController, UITableViewDelegate, UITableViewD
             destVC.pos = position
             
         }
+    }
+    
+    func deleteRow(flag: Bool) {
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -149,17 +153,6 @@ class FavRepoViewController: UIViewController, UITableViewDelegate, UITableViewD
         let url = URL(string: "https://api.github.com/repos/\(selectedRepo?.fullName ?? "")/commits")
         print(url ?? "")
         viewModel.getFullReposData(url: url!)
-    }
-    
-    @IBAction func logoutButton(_ sender: Any) {
-        
-        tableView.reloadData()
-        
-        do {
-            try Auth.auth().signOut()
-        } catch {
-            print(error)
-        }
     }
 }
 

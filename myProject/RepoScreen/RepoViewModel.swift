@@ -44,7 +44,7 @@ class RepoViewModel {
         print("ID: \(RepoViewModel.getUserID())")
         print("count of DB items:\(realmRepos.count)")
         guard !realmRepos.isEmpty else {
-            print("Empty")
+            delegate?.dadaDidReceiveReposFromDataBase(data: realmRepos)
             return
         }
         User.data = true

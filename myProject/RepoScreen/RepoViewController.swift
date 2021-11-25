@@ -78,7 +78,19 @@ class RepoViewController: UIViewController, UITableViewDelegate, UITableViewData
                 destVC.info = info
             
             destVC.model = viewModel
-            destVC.data = selectedRepo
+            
+            let rep = FavRepositoryData()
+            rep.id = selectedRepo.id
+            rep.avatar = selectedRepo.avatar
+            rep.login = selectedRepo.login
+            rep.name = selectedRepo.name
+            rep.desc = selectedRepo.desc
+            rep.language = selectedRepo.language
+            rep.forks = selectedRepo.forks
+            rep.stargazers = selectedRepo.stargazers
+            rep.fullName = selectedRepo.fullName
+            
+            destVC.data = rep
         }
     }
     
@@ -117,6 +129,7 @@ class RepoViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         selectedFavRepo.removeAll()
         let rep = FavRepositoryData()
+        rep.id = reposData[indexPath.row].id
         rep.avatar = reposData[indexPath.row].avatar
         rep.login = reposData[indexPath.row].login
         rep.name = reposData[indexPath.row].name
@@ -128,18 +141,6 @@ class RepoViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         selectedFavRepo.append(rep)
         viewModel.saveReposToDataBase(model: selectedFavRepo[0])
-        
-        rep.avatar = reposData[indexPath.row].avatar
-        rep.login = reposData[indexPath.row].login
-        rep.name = reposData[indexPath.row].name
-        rep.desc = reposData[indexPath.row].desc
-        rep.language = ""
-        rep.forks = reposData[indexPath.row].forks
-        rep.stargazers = reposData[indexPath.row].stargazers
-        rep.fullName = reposData[indexPath.row].fullName
-        
-        selectedFavRepo.append(rep)
-        viewModel.saveReposToDataBase(model: selectedFavRepo[1])
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -156,17 +157,6 @@ class RepoViewController: UIViewController, UITableViewDelegate, UITableViewData
         let url = URL(string: "https://api.github.com/repos/\(selectedRepo?.fullName ?? "")/commits")
         print(url ?? "")
         viewModel.getFullReposData(url: url!)
-        
-        
-        //performSegue(withIdentifier: "toDetailedRepo", sender: self)
-    }
-    
-    @IBAction func logoutButton(_ sender: Any) {
-        do {
-            try Auth.auth().signOut()
-        } catch {
-            print(error)
-        }
     }
 }
 

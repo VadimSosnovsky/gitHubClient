@@ -21,7 +21,7 @@ class FullRepoViewController: UIViewController {
     var info = ""
     
     var model = RepoViewModel()
-    var data = RepositoryData()
+    var data = FavRepositoryData()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +35,6 @@ class FullRepoViewController: UIViewController {
     }
     
     @IBAction func addButton(_ sender: Any) {
-        //model.saveReposToDataBase(models: data)
+        model.saveReposToDataBase(model: data)
     }
 }

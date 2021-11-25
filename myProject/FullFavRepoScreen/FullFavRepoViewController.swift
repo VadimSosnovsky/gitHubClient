@@ -31,6 +31,8 @@ class FullFavRepoViewController: UIViewController {
     var repos = [FavRepositoryData]()
     var pos = 0
     
+    var flag = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -43,11 +45,15 @@ class FullFavRepoViewController: UIViewController {
     }
     
     @IBAction func deleteButton(_ sender: Any) {
-
-        repos.remove(at: pos)
-        //model.deleteReposFromDataBase(models: data)
-
-        //viewModel.fetchDataFromDataBase()
-        table.reloadData()
+        flag = true
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        
+        if(flag == true) {
+            repos.remove(at: pos)
+            model.deleteReposFromDataBase(models: data)
+            table.reloadData()
+        }
     }
 }

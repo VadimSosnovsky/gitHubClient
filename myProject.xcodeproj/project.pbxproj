@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		890900472746463400E28214 /* FullReposModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890900462746463400E28214 /* FullReposModel.swift */; };
 		89230F79275009D500E9511D /* FavRepositoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89230F78275009D500E9511D /* FavRepositoryData.swift */; };
+		89230F7E275042C400E9511D /* LogoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89230F7D275042C400E9511D /* LogoutViewController.swift */; };
+		89230F822750485100E9511D /* door.json in Resources */ = {isa = PBXBuildFile; fileRef = 89230F812750485000E9511D /* door.json */; };
 		892EDB9B273463310015B6E4 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892EDB9A273463310015B6E4 /* TabBarViewController.swift */; };
 		8938574A2733EFA8007276EF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 893857492733EFA8007276EF /* GoogleService-Info.plist */; };
 		893F91E6273AE83C000528FE /* RepoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893F91E5273AE83C000528FE /* RepoViewModel.swift */; };
@@ -37,6 +39,8 @@
 /* Begin PBXFileReference section */
 		890900462746463400E28214 /* FullReposModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullReposModel.swift; sourceTree = "<group>"; };
 		89230F78275009D500E9511D /* FavRepositoryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavRepositoryData.swift; sourceTree = "<group>"; };
+		89230F7D275042C400E9511D /* LogoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutViewController.swift; sourceTree = "<group>"; };
+		89230F812750485000E9511D /* door.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = door.json; sourceTree = "<group>"; };
 		892EDB9A273463310015B6E4 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		893857492733EFA8007276EF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		893F91E5273AE83C000528FE /* RepoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoViewModel.swift; sourceTree = "<group>"; };
@@ -93,6 +97,14 @@
 				FB8399F5FCD090A9DCE907E7 /* Pods_myProject.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		89230F7A275041A600E9511D /* Logout */ = {
+			isa = PBXGroup;
+			children = (
+				89230F7D275042C400E9511D /* LogoutViewController.swift */,
+			);
+			path = Logout;
 			sourceTree = "<group>";
 		};
 		893F91E2273AE782000528FE /* RepoScreen */ = {
@@ -152,6 +164,8 @@
 		895BD26627318FB80083566E /* myProject */ = {
 			isa = PBXGroup;
 			children = (
+				89230F812750485000E9511D /* door.json */,
+				89230F7A275041A600E9511D /* Logout */,
 				89438A1B274D5B2B00CE07A7 /* FullFavRepoScreen */,
 				894AE25D2746C39800563C01 /* FullRepoScreen */,
 				89C0D448273B059400123B56 /* DetailedRepoScreen */,
@@ -301,6 +315,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89230F822750485100E9511D /* door.json in Resources */,
 				895BD27427318FB80083566E /* LaunchScreen.storyboard in Resources */,
 				897FC187273C437E00716FB2 /* FavRepoTableViewCell.xib in Resources */,
 				89E623682732777A00791F12 /* RepoTableViewCell.xib in Resources */,
@@ -374,6 +389,7 @@
 				895BD27E273195770083566E /* RepoViewController.swift in Sources */,
 				89C48A04274028B100F04C6B /* DetailedReposModel.swift in Sources */,
 				89BF415D273707AC0075AC97 /* ReposModel.swift in Sources */,
+				89230F7E275042C400E9511D /* LogoutViewController.swift in Sources */,
 				89E80C14273811E0004F0E1B /* DetailedRepoViewController.swift in Sources */,
 				890900472746463400E28214 /* FullReposModel.swift in Sources */,
 				894AE25F2746C3F000563C01 /* FullRepoViewController.swift in Sources */,
