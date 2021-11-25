@@ -11,8 +11,8 @@ import Firebase
 
 protocol RepoViewModelDelegate: AnyObject {
     func dataDidRecieveReposData(data: [Repository])
-    func dadaDidReceiveReposFromDataBase(data: [RepositoryData])
-    func dadaDidDeleteReposFromDataBase(data: RepositoryData)
+    func dadaDidReceiveReposFromDataBase(data: [FavRepositoryData])
+    func dadaDidDeleteReposFromDataBase(data: FavRepositoryData)
     func dataDidRecieveDetailedReposData(data: DetailedRepository)
     func dataDidRecieveAllReposData(data: [RepositoryData])
     func dataDidRecieveFullReposData(data: [FullRepository])
@@ -35,26 +35,19 @@ class RepoViewModel {
         return ID
     }
     
-//    init() {
-//        self.User.userID = getUserID()
-//    }
-    
-    
-//    private let localRealm = try! Realm(configuration: Realm.Configuration.init(
-//        fileURL: Realm.Configuration().fileURL!.deletingLastPathComponent().appendingPathComponent("MH0hI0jGt5POguoKqY86uylzC2A3.realm")))
-//
-    //private let localRealm = try! Realm()
-    
     func fetchDataFromDataBase() {
         
         let localRealm = try! Realm(configuration: Realm.Configuration.init(
             fileURL: Realm.Configuration().fileURL!.deletingLastPathComponent().appendingPathComponent("\(RepoViewModel.getUserID()).realm")))
         
-        let realmRepos = Array(localRealm.objects(RepositoryData.self))
+        let realmRepos = Array(localRealm.objects(FavRepositoryData.self))
+        print("ID: \(RepoViewModel.getUserID())")
+        print("count of DB items:\(realmRepos.count)")
         guard !realmRepos.isEmpty else {
             print("Empty")
             return
         }
+        User.data = true
         delegate?.dadaDidReceiveReposFromDataBase(data: realmRepos)
     }
     
@@ -75,7 +68,7 @@ class RepoViewModel {
     }
     
     private var detailed = DetailedRepository()
-    private var rp = [RepositoryData](repeating: RepositoryData(), count: 100)
+    //private var rp = [RepositoryData](repeating: RepositoryData(), count: 100)
     
     func getDetailedReposData(url: URL) {
         
@@ -107,7 +100,7 @@ class RepoViewModel {
         }
     }
     
-    func saveReposToDataBase(models: RepositoryData) {
+    func saveReposToDataBase(model: FavRepositoryData) {
         
         let localRealm = try! Realm(configuration: Realm.Configuration.init(
             fileURL: Realm.Configuration().fileURL!.deletingLastPathComponent().appendingPathComponent("\(RepoViewModel.getUserID()).realm")))
@@ -116,7 +109,7 @@ class RepoViewModel {
             do {
                 try localRealm.write {
                     self?.rep = "rep"
-                    localRealm.add(models, update: .modified)
+                    localRealm.add(model, update: .modified)
                 }
             } catch {
                 print("database error")
@@ -124,10 +117,12 @@ class RepoViewModel {
         }
     }
     
-    func deleteReposFromDataBase(models: RepositoryData) {
+    func deleteReposFromDataBase(models: FavRepositoryData) {
+        
         
         let localRealm = try! Realm(configuration: Realm.Configuration.init(
             fileURL: Realm.Configuration().fileURL!.deletingLastPathComponent().appendingPathComponent("\(RepoViewModel.getUserID()).realm")))
+
         
         DispatchQueue.main.async { [weak self] in
             do {
@@ -139,6 +134,7 @@ class RepoViewModel {
             }
             
             self?.delegate?.dadaDidDeleteReposFromDataBase(data: models)
+            //self?.fetchDataFromDataBase()
         }
     }
     
@@ -158,7 +154,7 @@ class RepoViewModel {
         var i = 0
         while i < repos.count {
             
-            let rep = RepositoryData()
+            var rep = RepositoryData()
 
             rep.id = repos[i].id
             rep.name = repos[i].name

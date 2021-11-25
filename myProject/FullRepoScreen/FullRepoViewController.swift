@@ -20,6 +20,9 @@ class FullRepoViewController: UIViewController {
     var image = ""
     var info = ""
     
+    var model = RepoViewModel()
+    var data = RepositoryData()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,5 +32,9 @@ class FullRepoViewController: UIViewController {
         
         KF.url(URL(string: "\(image)"))
                     .set(to: self.authorImage)
+    }
+    
+    @IBAction func addButton(_ sender: Any) {
+        //model.saveReposToDataBase(models: data)
     }
 }

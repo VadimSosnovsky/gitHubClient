@@ -9,13 +9,15 @@ import UIKit
 
 class FavRepoTableViewCell: UITableViewCell {
 
-    @IBOutlet private weak var name: UILabel!
-    @IBOutlet private weak var desc: UILabel!
-    @IBOutlet private weak var language: UILabel!
-    @IBOutlet private weak var forks: UILabel!
-    @IBOutlet private weak var stars: UILabel!
-    @IBOutlet private weak var author: UILabel!
+    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var desc: UILabel!
+    @IBOutlet weak var language: UILabel!
+    @IBOutlet weak var forks: UILabel!
+    @IBOutlet weak var stars: UILabel!
+    @IBOutlet weak var author: UILabel!
     @IBOutlet weak var profilePicture: UIImageView!
+    
+    
     @IBOutlet weak var deleteButton: UIButton!
     
     override func awakeFromNib() {

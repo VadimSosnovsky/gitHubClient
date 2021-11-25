@@ -11,7 +11,10 @@ import FirebaseAuth
 
 class TabBarViewController: UITabBarController {
 
+    //var tab = TabBarViewController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        //tab.selectedIndex = 0
     }
 }

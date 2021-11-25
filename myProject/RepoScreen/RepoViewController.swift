@@ -6,8 +6,8 @@
 //
 
 import UIKit
-import Kingfisher
 import Firebase
+import Kingfisher
 
 class RepoViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -15,6 +15,7 @@ class RepoViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     
     private var selectedRepo: RepositoryData?
+    private var selectedFavRepo = [FavRepositoryData]()
     private let viewModel = RepoViewModel()
     private var repos = [Repository]()
     private var reposDetailed = [DetailedRepository]()
@@ -37,10 +38,14 @@ class RepoViewController: UIViewController, UITableViewDelegate, UITableViewData
         viewModel.getReposData(url: links[0]!)
         tableView.refreshControl = myRefreshControl
     }
-    
+//    
     @objc private func refresh(sender: UIRefreshControl) {
-        tableView.reloadData()
-        sender.endRefreshing()
+//        tableView.reloadData()
+//        activityIndicator.startAnimating()
+//        viewModel.delegate = self
+//        configureTableView()
+//        viewModel.getReposData(url: links[0]!)
+//        tableView.refreshControl = myRefreshControl
     }
     
     
@@ -59,18 +64,21 @@ class RepoViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             var info = ""
             var counter = 1
-            
+            info += "Last 10 commits \n\n"
             outofloop: for item in  reposFull {
                 if(counter > 10) {
                     break outofloop
                 }
-                info += "\(counter) \n"
-                info += "\(item.commit?.committer?.date ?? "") \n"
-                info += "\(item.commit?.message  ?? "")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+                info += "№\(counter) \n"
+                info += "date: \(item.commit?.committer?.date ?? "") \n"
+                info += "message: \(item.commit?.message  ?? "")\n\n"
                 counter += 1
             }
                 
                 destVC.info = info
+            
+            destVC.model = viewModel
+            destVC.data = selectedRepo
         }
     }
     
@@ -89,10 +97,6 @@ class RepoViewController: UIViewController, UITableViewDelegate, UITableViewData
                 .set(to: cell.profilePicture)
            
             cell.addButton.addTarget(self, action: #selector(self.btnAction(_:)), for: .touchUpInside)
-//            cell.addButton.tintColor = .clear
-//            cell.addButton.backgroundColor = .clear
-//            let imgAfter: UIImage = UIImage(named: "filled_star")!
-//            cell.addButton.setImage(imgAfter, for: .normal)
             
             return cell
         } else {
@@ -105,12 +109,37 @@ class RepoViewController: UIViewController, UITableViewDelegate, UITableViewData
         let point = sender.convert(CGPoint.zero, to: tableView as UIView)
         let indexPath: IndexPath! = tableView.indexPathForRow(at: point)
         
-        selectedRepo = reposData[indexPath.row]
-        print(selectedRepo?.fullName ?? "Unknown")
+//        selectedRepo = reposData[indexPath.row]
+//
+//        print(selectedRepo?.fullName ?? "Unknown")
         
         print("row is = \(indexPath.row) && section is = \(indexPath.section)")
         
-        viewModel.saveReposToDataBase(models: selectedRepo ?? RepositoryData())
+        selectedFavRepo.removeAll()
+        let rep = FavRepositoryData()
+        rep.avatar = reposData[indexPath.row].avatar
+        rep.login = reposData[indexPath.row].login
+        rep.name = reposData[indexPath.row].name
+        rep.desc = reposData[indexPath.row].desc
+        rep.language = reposData[indexPath.row].language
+        rep.forks = reposData[indexPath.row].forks
+        rep.stargazers = reposData[indexPath.row].stargazers
+        rep.fullName = reposData[indexPath.row].fullName
+        
+        selectedFavRepo.append(rep)
+        viewModel.saveReposToDataBase(model: selectedFavRepo[0])
+        
+        rep.avatar = reposData[indexPath.row].avatar
+        rep.login = reposData[indexPath.row].login
+        rep.name = reposData[indexPath.row].name
+        rep.desc = reposData[indexPath.row].desc
+        rep.language = ""
+        rep.forks = reposData[indexPath.row].forks
+        rep.stargazers = reposData[indexPath.row].stargazers
+        rep.fullName = reposData[indexPath.row].fullName
+        
+        selectedFavRepo.append(rep)
+        viewModel.saveReposToDataBase(model: selectedFavRepo[1])
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -128,8 +157,10 @@ class RepoViewController: UIViewController, UITableViewDelegate, UITableViewData
         print(url ?? "")
         viewModel.getFullReposData(url: url!)
         
+        
         //performSegue(withIdentifier: "toDetailedRepo", sender: self)
     }
+    
     @IBAction func logoutButton(_ sender: Any) {
         do {
             try Auth.auth().signOut()
@@ -142,12 +173,12 @@ class RepoViewController: UIViewController, UITableViewDelegate, UITableViewData
 extension RepoViewController: RepoViewModelDelegate {
     
     
-    func dadaDidDeleteReposFromDataBase(data: RepositoryData) {
+    func dadaDidDeleteReposFromDataBase(data: FavRepositoryData) {
         
     }
     
     
-    func dadaDidReceiveReposFromDataBase(data: [RepositoryData]) {
+    func dadaDidReceiveReposFromDataBase(data: [FavRepositoryData]) {
         //self.repos = data
         DispatchQueue.main.async {[weak self] in
             self?.tableView.reloadData()
@@ -158,7 +189,7 @@ extension RepoViewController: RepoViewModelDelegate {
         DispatchQueue.main.async { [weak self] in
             print("Данные загружены")
             self?.repos = data
-//            User.i = 0
+            //User.i = 0
 //            self?.viewModel.getAllinfo(data: self!.repos, i: User.i)
             self?.viewModel.getAllinfo(data: self!.repos)
             

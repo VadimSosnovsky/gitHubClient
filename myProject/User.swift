@@ -11,4 +11,6 @@ struct User {
     
     static var userID = String()
     static var i = Int()
+    
+    static var data = false
 }

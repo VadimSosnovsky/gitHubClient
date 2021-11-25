@@ -8,10 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		890900472746463400E28214 /* FullReposModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890900462746463400E28214 /* FullReposModel.swift */; };
+		89230F79275009D500E9511D /* FavRepositoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89230F78275009D500E9511D /* FavRepositoryData.swift */; };
 		892EDB9B273463310015B6E4 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892EDB9A273463310015B6E4 /* TabBarViewController.swift */; };
 		8938574A2733EFA8007276EF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 893857492733EFA8007276EF /* GoogleService-Info.plist */; };
 		893F91E6273AE83C000528FE /* RepoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893F91E5273AE83C000528FE /* RepoViewModel.swift */; };
 		893F91E9273AE98B000528FE /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893F91E8273AE98B000528FE /* NetworkService.swift */; };
+		89438A1D274D5B6300CE07A7 /* FullFavRepoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89438A1C274D5B6300CE07A7 /* FullFavRepoViewController.swift */; };
 		894AE25F2746C3F000563C01 /* FullRepoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894AE25E2746C3F000563C01 /* FullRepoViewController.swift */; };
 		895B130A2735A468000D707A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 895B13092735A468000D707A /* Assets.xcassets */; };
 		895BD26827318FB80083566E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895BD26727318FB80083566E /* AppDelegate.swift */; };
@@ -23,7 +25,6 @@
 		897FC186273C437E00716FB2 /* FavRepoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897FC184273C437E00716FB2 /* FavRepoTableViewCell.swift */; };
 		897FC187273C437E00716FB2 /* FavRepoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 897FC185273C437E00716FB2 /* FavRepoTableViewCell.xib */; };
 		8987B7012747B6A300051CD8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8987B7002747B6A300051CD8 /* User.swift */; };
-		898CF9782735ADC0001506C1 /* LogoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898CF9772735ADC0001506C1 /* LogoutViewController.swift */; };
 		89BF415D273707AC0075AC97 /* ReposModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BF415C273707AC0075AC97 /* ReposModel.swift */; };
 		89C48A04274028B100F04C6B /* DetailedReposModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C48A03274028B100F04C6B /* DetailedReposModel.swift */; };
 		89C53468274418E500EA49BE /* RepositoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C53467274418E500EA49BE /* RepositoryData.swift */; };
@@ -35,10 +36,12 @@
 
 /* Begin PBXFileReference section */
 		890900462746463400E28214 /* FullReposModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullReposModel.swift; sourceTree = "<group>"; };
+		89230F78275009D500E9511D /* FavRepositoryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavRepositoryData.swift; sourceTree = "<group>"; };
 		892EDB9A273463310015B6E4 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		893857492733EFA8007276EF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		893F91E5273AE83C000528FE /* RepoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoViewModel.swift; sourceTree = "<group>"; };
 		893F91E8273AE98B000528FE /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		89438A1C274D5B6300CE07A7 /* FullFavRepoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullFavRepoViewController.swift; sourceTree = "<group>"; };
 		894AE25E2746C3F000563C01 /* FullRepoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullRepoViewController.swift; sourceTree = "<group>"; };
 		895B13092735A468000D707A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		895BD26427318FB80083566E /* myProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -52,7 +55,6 @@
 		897FC184273C437E00716FB2 /* FavRepoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavRepoTableViewCell.swift; sourceTree = "<group>"; };
 		897FC185273C437E00716FB2 /* FavRepoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavRepoTableViewCell.xib; sourceTree = "<group>"; };
 		8987B7002747B6A300051CD8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		898CF9772735ADC0001506C1 /* LogoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutViewController.swift; sourceTree = "<group>"; };
 		89BF415C273707AC0075AC97 /* ReposModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReposModel.swift; sourceTree = "<group>"; };
 		89C48A03274028B100F04C6B /* DetailedReposModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedReposModel.swift; sourceTree = "<group>"; };
 		89C53467274418E500EA49BE /* RepositoryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryData.swift; sourceTree = "<group>"; };
@@ -113,6 +115,14 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		89438A1B274D5B2B00CE07A7 /* FullFavRepoScreen */ = {
+			isa = PBXGroup;
+			children = (
+				89438A1C274D5B6300CE07A7 /* FullFavRepoViewController.swift */,
+			);
+			path = FullFavRepoScreen;
+			sourceTree = "<group>";
+		};
 		894AE25D2746C39800563C01 /* FullRepoScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -142,8 +152,8 @@
 		895BD26627318FB80083566E /* myProject */ = {
 			isa = PBXGroup;
 			children = (
+				89438A1B274D5B2B00CE07A7 /* FullFavRepoScreen */,
 				894AE25D2746C39800563C01 /* FullRepoScreen */,
-				89C0D449273B05AB00123B56 /* LogoutScreen */,
 				89C0D448273B059400123B56 /* DetailedRepoScreen */,
 				89C0D447273B057100123B56 /* AuthScreen */,
 				89C0D446273B055300123B56 /* FavRepoScreen */,
@@ -193,6 +203,7 @@
 			children = (
 				89E623652732777A00791F12 /* RepoTableViewCell.swift */,
 				89E623662732777A00791F12 /* RepoTableViewCell.xib */,
+				89230F78275009D500E9511D /* FavRepositoryData.swift */,
 			);
 			path = ReposCell;
 			sourceTree = "<group>";
@@ -220,14 +231,6 @@
 				89E80C13273811E0004F0E1B /* DetailedRepoViewController.swift */,
 			);
 			path = DetailedRepoScreen;
-			sourceTree = "<group>";
-		};
-		89C0D449273B05AB00123B56 /* LogoutScreen */ = {
-			isa = PBXGroup;
-			children = (
-				898CF9772735ADC0001506C1 /* LogoutViewController.swift */,
-			);
-			path = LogoutScreen;
 			sourceTree = "<group>";
 		};
 		89C0D44A273B05CA00123B56 /* TabBar */ = {
@@ -357,14 +360,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				893F91E9273AE98B000528FE /* NetworkService.swift in Sources */,
+				89438A1D274D5B6300CE07A7 /* FullFavRepoViewController.swift in Sources */,
 				89C53468274418E500EA49BE /* RepositoryData.swift in Sources */,
 				893F91E6273AE83C000528FE /* RepoViewModel.swift in Sources */,
 				89E623672732777A00791F12 /* RepoTableViewCell.swift in Sources */,
 				895BD280273195B30083566E /* FavRepoViewController.swift in Sources */,
 				895BD27C273191770083566E /* AuthViewController.swift in Sources */,
+				89230F79275009D500E9511D /* FavRepositoryData.swift in Sources */,
 				895BD26827318FB80083566E /* AppDelegate.swift in Sources */,
 				8987B7012747B6A300051CD8 /* User.swift in Sources */,
-				898CF9782735ADC0001506C1 /* LogoutViewController.swift in Sources */,
 				897FC186273C437E00716FB2 /* FavRepoTableViewCell.swift in Sources */,
 				892EDB9B273463310015B6E4 /* TabBarViewController.swift in Sources */,
 				895BD27E273195770083566E /* RepoViewController.swift in Sources */,

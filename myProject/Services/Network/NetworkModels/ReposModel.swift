@@ -8,13 +8,13 @@
 import Foundation
 import RealmSwift
 
-class Repository: Object, Codable {
+struct Repository: Codable {
 
-    @Persisted var id: Int?
-    @Persisted var name: String?
-    @Persisted var fullName: String?
-    @Persisted var desc: String?
-    @Persisted var owner: Owner?
+    var id: Int?
+    var name: String?
+    var fullName: String?
+    var desc: String?
+    var owner: Owner?
 
     enum CodingKeys: String, CodingKey {
         case id = "id"
@@ -23,16 +23,12 @@ class Repository: Object, Codable {
         case desc = "description"
         case owner
     }
-    
-    override class func primaryKey() -> String? {
-      return "id"
-    }
 }
 
-class Owner: Object, Codable {
+struct Owner: Codable {
 
-    @Persisted var login: String?
-    @Persisted var avatar: String?
+    var login: String?
+    var avatar: String?
 
     enum CodingKeys: String, CodingKey {
         case login = "login"
